@@ -21,7 +21,7 @@ braker.pl --genome=genome.fasta.masked \
  --workingdir=out_braker --softmasking --UTR=on
 
 
-#Select the longest transcript variants from each gene model
+#Select the longest transcript variants from each gene
 seqkit fx2tab -l augustus.hints_utr.codingseq |awk '{print$1"\t"$3}'|sort|perl filter-best_seq-length.pl > longest.gene.txt
 for i in `awk '{print$1}' longest.gene.txt`;do seqkit grep -p ${i} augustus.hints_utr.codingseq ;done > augustus.hints_utr.longest.codingseq
 grep ">" augustus.hints_utr.longest.codingseq | perl -pe 's/>//g' > augustus.hints_utr.longest.lst
@@ -54,7 +54,7 @@ transdecoder/util/cdna_alignment_orf_to_genome_orf.pl \
 #Get CDS sequences from each transcript
 gffread merged.transdecoder.genome_def.gff3 -g genome.fasta.masked -x merged.transdecoder.genome.cds
 
-#Select the longest transcripts from each gene model
+#Select the longest transcripts from each gene
 seqkit fx2tab -l merged.transdecoder.genome_def.cds |awk '{print$1"\t"$3}'|sort -k1 -nr|perl filter-best_seq-length.pl|awk '{print$1}' > longest.gene.txt
 for i in `awk '{print$1}' longest.gene.txt`;do seqkit grep -p ${i} merged.transdecoder.genome.cds ;done > merged.transdecoder.genome.longest.cds
 grep ">" merged.transdecoder.genome.longest.cds | perl -pe 's/>//g' > merged.transdecoder.genome.longest.lst
@@ -94,8 +94,8 @@ gffcompare -r tmp.gtf -o gffcomp2 augustus.ab_initio_utr.longest.gtf
 
 #Extract genes that absent in prediction from AUGUSTUS hints
 grep u gffcomp2.tracking | awk -F"\t" '{print$5}' | awk -F"|" '{print$2}' > tmp.lst
-for i in `cat tmp.lst`;do seqkit grep -p ${i} ;done |perl -pe 's/>g/>gene/g' > abinitio_add.fa
-grep ">" abinitio_add.fa |perl -pe 's/>//g' > abinitio_add.lst
+for i in `cat tmp.lst`;do seqkit grep -p ${i} ;done | perl -pe 's/>g/>gene/g' > abinitio_add.fa
+grep ">" abinitio_add.fa | perl -pe 's/>//g' > abinitio_add.lst
 
 perl extract_codingseq3.pl abinitio_add.lst augustus.ab_initio_utr.longest.gtf > abinitio_add.gtf
 
