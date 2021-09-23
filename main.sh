@@ -22,7 +22,7 @@ braker.pl --genome=genome.fasta.masked \
 
 
 #Select the longest transcript variants from each gene
-seqkit fx2tab -l augustus.hints_utr.codingseq |awk '{print$1"\t"$3}'|sort|perl filter-best_seq-length.pl > longest.gene.txt
+seqkit fx2tab -l augustus.hints_utr.codingseq |awk '{print$1"\t"$3}'|sort|perl filter_seq-length.pl > longest.gene.txt
 for i in `awk '{print$1}' longest.gene.txt`;do seqkit grep -p ${i} augustus.hints_utr.codingseq ;done > augustus.hints_utr.longest.codingseq
 grep ">" augustus.hints_utr.longest.codingseq | perl -pe 's/>//g' > augustus.hints_utr.longest.lst
 perl extract_codingseq.pl augustus.hints_utr.longest.lst augustus.hints_utr.gtf > augustus.hints_utr.longest.gtf
@@ -55,7 +55,7 @@ transdecoder/util/cdna_alignment_orf_to_genome_orf.pl \
 gffread merged.transdecoder.genome_def.gff3 -g genome.fasta.masked -x merged.transdecoder.genome.cds
 
 #Select the longest transcripts from each gene
-seqkit fx2tab -l merged.transdecoder.genome_def.cds |awk '{print$1"\t"$3}'|sort -k1 -nr|perl filter-best_seq-length.pl|awk '{print$1}' > longest.gene.txt
+seqkit fx2tab -l merged.transdecoder.genome_def.cds |awk '{print$1"\t"$3}'|sort -k1 -nr|perl filter_seq-length.pl|awk '{print$1}' > longest.gene.txt
 for i in `awk '{print$1}' longest.gene.txt`;do seqkit grep -p ${i} merged.transdecoder.genome.cds ;done > merged.transdecoder.genome.longest.cds
 grep ">" merged.transdecoder.genome.longest.cds | perl -pe 's/>//g' > merged.transdecoder.genome.longest.lst
 perl extract_longest2.pl merged.transdecoder.genome.longest.lst merged.transdecoder.genome_def.gff3 > merged.transdecoder.genome.longest.gff3
