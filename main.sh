@@ -109,7 +109,7 @@ Step 4 Sorting
 ##############
 
 perl add_intron_for_transdecoder.pl merged.gtf > tmp.gtf
-for i in `awk '{print$1}' tmp.gtf |sort -n |uniq`;do  grep ${i} tmp.gtf|awk -F"\t" '$3=="gene"{print}'|sort -k 5 -n |perl name-lst.pl >> gene.lst ;done
+for i in `awk '{print$1}' tmp.gtf | sort -n | uniq`;do  grep ${i} tmp.gtf | awk -F"\t" '$3=="gene"{print}' | sort -k 5 -n | perl name-lst.pl >> gene.lst ;done
 perl change-name.pl gene.lst test.gtf > species1.gtf
 gffread species1.gtf -g genome.fasta.masked -w species1.longest.mrna
 
