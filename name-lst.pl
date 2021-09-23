@@ -1,19 +1,28 @@
-$c=0;
-$prefix=meff;
-while($_=<>){
+
+while(<>){
 	chomp;
+	@c=split(/\./,$_);
 	@a=split(/\t/,$_);
-	$a[0]=~s/sc000/s/g;
-	if($a[2] eq gene){
-		$c++;
-		if($c<10){
-			print "$a[8]\t${prefix}_$a[0].g000$c\n";
-		}elsif($c<100){
-			print "$a[8]\t${prefix}_$a[0].g00$c\n";
-		}elsif($c<1000){
-			print "$a[8]\t${prefix}_$a[0].g0$c\n";
-		}elsif($c<10000){
-			print "$a[8]\t${prefix}_$a[0].g$c\n";
-		}
+	$id = $c[0];
+	$sco = $a[1]; ## here for seq length
+	if($id eq $pid){
+		$b{$sco} = $_;
 	}
+	elsif($id ne $pid){
+		if (length ($pid)>1){
+			my @keys_sorted = sort  { $b <=> $a } keys %b; #sort
+			$top_id = shift @keys_sorted; # just get longest one 
+			print "$b{$top_id}\n";
+			%b=();
+		}
+		$b{$sco} = $_;
+	}
+	$pid=$id;
+}
+
+if (length ($pid)>1){
+	my @keys_sorted = sort  { $b <=> $a } keys %b; #sort
+	$top_id = shift @keys_sorted; # just get longest one 
+	print "$b{$top_id}\n";
+	%b=();
 }
