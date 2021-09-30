@@ -1,6 +1,6 @@
-################
-#Gene prediction
-################
+####################################################################################
+Gene prediction with a combination of ab initio and RNA-seq evidnece-based methods
+####################################################################################
 
 ###########################################
 Step 1 Gene prediction with BRAKER pipeline
