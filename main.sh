@@ -14,7 +14,7 @@ samtools view -Sb ${sample}.sam > ${sample}.bam
 samtools sort -@ 12 -o ${sample}.sort.bam ${sample}.bam
 
 
-#Running BRAKER
+#Running BRAKER (This step takes 2~3 days)
 braker.pl --genome=genome.fasta.masked \
  --bam=sample1.sort.bam,sample2.sort.bam,sample3.sort.bam \
  --species=species1 --cores=16 \
