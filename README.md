@@ -1,4 +1,4 @@
-# Montipora-genomics
+# Gene-annotation with BRAKER pipiline
 
 |Required software|Version|
 |---|---|
