@@ -9,6 +9,7 @@
 |TransDecoder|v5.5.0|
 |GffCompare|v0.11.2|
 |GffRead|v0.12.1|
+|SeqKit|v2.0|
 
 #Chips to run BRAKER  
 1. https://github.com/Gaius-Augustus/BRAKER/issues/126  
