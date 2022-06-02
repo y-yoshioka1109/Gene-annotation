@@ -1,4 +1,4 @@
-# Gene-annotation with BRAKER pipiline
+# Genome-annotation with BRAKER pipiline
 
 |Required software|Version|
 |---|---|
