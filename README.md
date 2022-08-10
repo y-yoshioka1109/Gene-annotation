@@ -17,5 +17,5 @@
 3. https://github.com/Gaius-Augustus/Augustus/commit/3da1d64553bafb7d0a80decea0b09e11dfd4a872  
 
 This method was used in paper below.  
-Yoshioka Y, Suzuki G, Zayasu Y, Yamashita H, Shinzato C (2022) Comparative genomics highlight the importance of lineage-specific gene families in evolutionary divergence of the coral genus, _Montipora_. _BMC Ecology and Evolution_. 22:71. [Link](https://link.springer.com/article/10.1186/s12862-022-02023-8)
+Yoshioka Y, Suzuki G, Zayasu Y, Yamashita H, Shinzato C (2022) Comparative genomics highlight the importance of lineage-specific gene families in evolutionary divergence of the coral genus, _Montipora_. _BMC Ecology and Evolution_. 22:71. [Link](https://link.springer.com/article/10.1186/s12862-022-02023-8)  
 Gene models are available at [OIST Marine Genomics Unit Genome Browser](https://marinegenomics.oist.jp/gallery)
