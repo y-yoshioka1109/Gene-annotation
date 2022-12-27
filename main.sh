@@ -27,9 +27,9 @@ for i in `awk '{print$1}' longest.gene.txt`;do seqkit grep -p ${i} augustus.hint
 grep ">" augustus.hints_utr.longest.codingseq | perl -pe 's/>//g' > augustus.hints_utr.longest.lst
 perl extract_codingseq.pl augustus.hints_utr.longest.lst augustus.hints_utr.gtf > augustus.hints_utr.longest.gtf
 
-##################################################
-Step 2 Gene prediction with transcriptome assembly
-##################################################
+################################################################
+Step 2 Gene prediction with genome-guided transcriptome assembly
+################################################################
 
 #Genome-guided transcriptome assembly
 stringtie -m 500 -p 8 -o ${sample}.bam.gtf ${sample}.bam
