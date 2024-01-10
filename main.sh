@@ -81,7 +81,7 @@ gffcompare -r augustus.hints_utr.longest.gtf -o gffcomp merged.transdecoder.geno
 
 #Extract genes that absent in prediction from AUGUSTUS hints
 grep u gffcomp.tracking | awk -F"\t" '{print$5}' | awk -F"|" '{print$2}' > tmp.lst
-for i in `cat tmp.lst`;do seqkit grep -p ${i} ;done > stringtie_add.fa 
+for i in `cat tmp.lst`;do seqkit grep -p ${i} merged.transdecoder.genome.longest.mrna ;done > stringtie_add.fa 
 grep ">" stringtie_add.fa | perl -pe 's/>//g' > stringtie_add.lst 
 
 perl extract_codingseq2.pl stringtie_add.lst merged.transdecoder.genome.longest.gtf | perl -ne '@a=split(/\t/,$_);if($a[2] eq transcript){@b=split(/\"/,$a[8]);print"$a[0]\t$a[1]\tgene\t$a[3]\t$a[4]\t$a[5]\t$a[6]\t$a[7]\t$b[3]\n";print$_}else{print$_}' > stringtie_add.gtf
@@ -94,7 +94,7 @@ gffcompare -r tmp.gtf -o gffcomp2 augustus.ab_initio_utr.longest.gtf
 
 #Extract genes that absent in prediction from AUGUSTUS hints
 grep u gffcomp2.tracking | awk -F"\t" '{print$5}' | awk -F"|" '{print$2}' > tmp.lst
-for i in `cat tmp.lst`;do seqkit grep -p ${i} ;done | perl -pe 's/>g/>gene/g' > abinitio_add.fa
+for i in `cat tmp.lst`;do seqkit grep -p ${i} augustus.ab_initio_utr.longest.codingseq ;done | perl -pe 's/>g/>gene/g' > abinitio_add.fa
 grep ">" abinitio_add.fa | perl -pe 's/>//g' > abinitio_add.lst
 
 perl extract_codingseq3.pl abinitio_add.lst augustus.ab_initio_utr.longest.gtf > abinitio_add.gtf
